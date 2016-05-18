@@ -1,0 +1,29 @@
+﻿@model MovieSemantic.Models.SearchResultsModel
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search has returned these results:</h2>
+@if (Model.Criteria == MovieSemantic.Models.Criteria.Title)
+{
+    using (Html.BeginForm())
+    {
+        foreach (var res in Model.MoviesList)
+        {
+            <hr />
+            <a href="@Url.Action("Details", "Movie", new {id = res.MovieId})" target="_blank">@res.MovieName.ToString()</a>
+        }
+    }
+}
+
+else if (Model.Criteria == MovieSemantic.Models.Criteria.Actor)
+{
+    using (Html.BeginForm())
+    {
+        foreach (var res in Model.ActorsList)
+        {
+            <hr />
+            <a href="@Url.Action("Details", "Actor", new {id = res.ActorId})" target="_blank">@res.ActorName.ToString()</a>
+        }
+    }
+}

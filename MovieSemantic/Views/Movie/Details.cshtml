@@ -1,0 +1,77 @@
+﻿@model MovieSemantic.Models.MovieDetailsModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Movie details:</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <td>Title:</td>
+        <td><span style="font-weight: bolder;">@Model.MovieTitle</span></td>
+    </tr>
+    <tr>
+        <td>Date:</td>
+        <td>@if (Model.MovieDate != null)
+        {
+            <span style="font-weight: bolder;">@Model.MovieDate</span>
+        }
+        else
+        {
+            <span style="font-weight: bolder;">N/A</span>
+        }</td>
+    </tr>
+    <tr>
+        <td>Country:</td>
+        <td>@if (Model.MovieCountry != null)
+        {
+            <span style="font-weight: bolder;">@Model.MovieCountry</span>
+        }
+        else
+        {
+            <span style="font-weight: bolder;">N/A</span>
+        }</td>
+    </tr>
+    <tr>
+        <td>Directors:</td>
+        <td>@if (Model.Directors.Count == 0)
+        {
+            <span style="font-weight: bolder;">N/A</span>
+        }
+        else
+        {
+            foreach (var dir in Model.Directors)
+            {
+                <p><span style="font-weight: bolder;">@dir.ToString()</span></p>
+            }
+        }</td>
+    </tr>
+    <tr>
+        <td>Writers:</td>
+        <td>@if (Model.Writers.Count == 0)
+        {
+            <span style="font-weight: bolder;">N/A</span>
+        }
+        else
+        {
+            foreach (var wr in Model.Writers)
+            {
+                <p><span style="font-weight: bolder;">@wr.ToString()</span></p>
+            }
+        }</td>
+    </tr>
+    <tr>
+        <td>Actors:</td>
+        <td>@if (Model.Actors.Count == 0)
+        {
+            <span style="font-weight: bolder;">N/A</span>
+        }
+        else
+        {
+            foreach (var act in Model.Actors)
+            {
+                <p><span style="font-weight: bolder;">@act.ToString()</span></p>
+            }
+        }</td>
+    </tr>
+</table>

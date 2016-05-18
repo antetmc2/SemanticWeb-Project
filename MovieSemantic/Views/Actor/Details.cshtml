@@ -1,0 +1,109 @@
+﻿@model MovieSemantic.Models.ActorDetailsModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Actor details:</h2>
+
+@Html.HiddenFor(x => x.ActorId)
+@Html.DropDownList("LangDropDown", Model.Language, "Select your language:", new { @class = "form-control jezik" })
+@*<a href="@Url.Action("Details", "Actor", new {id = Model.ActorId, lang = "it" })" class="btn btn-default">Change</a>*@
+<input type="submit" class="btn btn-default" value="Submit" id="klik" style="margin-left: 110px; margin-top: 10px;" />
+
+
+<table class="table table-bordered" style="margin-top: 20px;">
+    <tr>
+        <td>Name:</td>
+        <td><span style="font-weight: bolder;">@Model.ActorName</span></td>
+        @if (Model.Pic != null)
+        {
+            <td rowspan="7"><img src="@Model.Pic" /></td>
+        }
+    </tr>
+    <tr>
+        <td>Short Description:</td>
+        <td>@if (Model.ShortDescription != null)
+        {
+            <span style="font-weight: bolder;">@Model.ShortDescription</span>
+        }
+        else
+        {
+            <span style="font-weight: bolder;">N/A</span>
+        }</td>
+    </tr>
+    <tr>
+        <td>Birth Date:</td>
+        <td>
+            @if (Model.BirthDate != null)
+            {
+                <span style="font-weight: bolder;">@Model.BirthDate</span>
+            }
+            else
+            {
+                <span style="font-weight: bolder;">N/A</span>
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>Death Date:</td>
+        <td>
+            @if (Model.DeathDate != null)
+            {
+                <span style="font-weight: bolder;">@Model.DeathDate</span>
+            }
+            else
+            {
+                <span style="font-weight: bolder;">N/A (most likely still alive ...)</span>
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>Birth Place: </td>
+        <td>
+            @if (Model.BirthPlace != null)
+            {
+                <span style="font-weight: bolder;">@Model.BirthPlace</span>
+            }
+            else
+            {
+                <span style="font-weight: bolder;">N/A</span>
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>Biography: </td>
+        <td>
+            @if (Model.Biography != null)
+            {
+                <span style="font-weight: bolder;">@Model.Biography</span>
+            }
+            else
+            {
+                <span style="font-weight: bolder;">N/A</span>
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>Movies: </td>
+        <td>
+            @if (Model.Movies.Count == 0)
+            {
+                <span style="font-weight: bolder;">N/A</span>
+            }
+            else
+            {
+                foreach (var m in Model.Movies)
+                {
+                    <p><span style="font-weight: bolder;">@m.ToString()</span></p>
+                }
+            }
+        </td>
+    </tr>
+</table>
+
+<script>
+    $("#klik").on("click", function ()
+    {
+        location.href = "@Model.ActorId" + '?lang=' + $('.jezik').val();
+    });
+</script>
